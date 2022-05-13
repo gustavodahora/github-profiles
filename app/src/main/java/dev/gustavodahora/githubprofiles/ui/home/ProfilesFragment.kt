@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.textfield.TextInputLayout
 import dev.gustavodahora.githubprofiles.databinding.FragmentProfilesBinding
 
 class ProfilesFragment : Fragment() {
@@ -31,7 +33,10 @@ class ProfilesFragment : Fragment() {
 //        homeViewModel.text.observe(viewLifecycleOwner) {
 //            textView.text = it
 //        }
-        return root
+
+        val editUsername: TextInputLayout = binding.editUsername
+
+        return binding.root
     }
 
     override fun onDestroyView() {
