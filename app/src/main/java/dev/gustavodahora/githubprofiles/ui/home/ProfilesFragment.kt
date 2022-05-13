@@ -5,10 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.daimajia.androidanimations.library.Techniques
+import com.daimajia.androidanimations.library.YoYo
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputEditText
 import com.squareup.picasso.Picasso
+import dev.gustavodahora.githubprofiles.R
 import dev.gustavodahora.githubprofiles.databinding.FragmentProfilesBinding
 
 class ProfilesFragment : Fragment() {
@@ -46,10 +51,13 @@ class ProfilesFragment : Fragment() {
             binding.tvUsername.text = it.login
             binding.tvFollowersCount.text = it.followers.toString()
             binding.tvRepoCount.text = it.publicRepos.toString()
+
+            showCardProfile()
         }
-        // Import material for error
+        profilesViewModel.errorStatus.observe(viewLifecycleOwner) {
+            showDialogError()
+        }
         // Progress circle infinity
-        // Yoyo For animations
     }
 
     private fun listeners() {
@@ -57,6 +65,25 @@ class ProfilesFragment : Fragment() {
         val btnSearch: Button = binding.btnSearch
         btnSearch.setOnClickListener {
             profilesViewModel.retrofitCall(editUsername.text.toString())
+        }
+    }
+
+    private fun showCardProfile() {
+        if (!binding.cardViewUser.isVisible) {
+            YoYo.with(Techniques.FadeInLeft)
+                .duration(2000)
+                .onStart { binding.cardViewUser.visibility = View.VISIBLE }
+                .playOn(binding.cardViewUser)
+        }
+    }
+
+    private fun showDialogError() {
+        context?.let {
+            MaterialAlertDialogBuilder(it)
+                .setTitle(resources.getString(R.string.not_found))
+                .setMessage(resources.getString(R.string.supporting_text))
+                .setPositiveButton(resources.getString(R.string.ok)) { _, _ ->
+                }.show()
         }
     }
 }

@@ -17,4 +17,8 @@
     <string name="followers_placeholder_value">20</string>
     <string name="repos_placeholder">Repos:</string>
     <string name="repos_placeholder_value">20</string>
+    <string name="not_found">User not Found</string>
+    <string name="supporting_text">Check username</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
 </resources>

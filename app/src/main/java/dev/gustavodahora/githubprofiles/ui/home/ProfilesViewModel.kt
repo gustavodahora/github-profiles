@@ -15,11 +15,14 @@ class ProfilesViewModel : ViewModel() {
     private val _userProfile = MutableLiveData<UserProfile>()
     val userProfile: LiveData<UserProfile> = _userProfile
 
+    private val _errorStatus = MutableLiveData<Boolean>()
+    val  errorStatus: LiveData<Boolean> = _errorStatus
+
     fun retrofitCall(username: String) {
         val remote = RetrofitClient.createService(GetService::class.java)
         val call: Call<UserProfile> = remote.list(username)
 
-        val response = call.enqueue(object : Callback<UserProfile> {
+        call.enqueue(object : Callback<UserProfile> {
             override fun onResponse(
                 call: Call<UserProfile>,
                 response: Response<UserProfile>
@@ -28,11 +31,13 @@ class ProfilesViewModel : ViewModel() {
                     if (response.body() != null) {
                         _userProfile.value = response.body()
                     }
+                } else {
+                    _errorStatus.value = true
                 }
             }
 
             override fun onFailure(call: Call<UserProfile>, t: Throwable) {
-                val s = t.message
+                _errorStatus.value = true
             }
         })
     }
