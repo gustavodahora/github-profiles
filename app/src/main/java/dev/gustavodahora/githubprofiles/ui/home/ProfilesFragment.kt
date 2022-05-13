@@ -4,18 +4,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
+import android.widget.Button
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.google.android.material.textfield.TextInputLayout
+import com.google.android.material.textfield.TextInputEditText
+import com.squareup.picasso.Picasso
 import dev.gustavodahora.githubprofiles.databinding.FragmentProfilesBinding
 
 class ProfilesFragment : Fragment() {
 
     private var _binding: FragmentProfilesBinding? = null
+    private lateinit var profilesViewModel: ProfilesViewModel
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -23,18 +24,13 @@ class ProfilesFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(ProfilesViewModel::class.java)
+        profilesViewModel =
+            ViewModelProvider(this)[ProfilesViewModel::class.java]
 
         _binding = FragmentProfilesBinding.inflate(inflater, container, false)
-        val root: View = binding.root
 
-//        val textView: TextView = binding.textHome
-//        homeViewModel.text.observe(viewLifecycleOwner) {
-//            textView.text = it
-//        }
-
-        val editUsername: TextInputLayout = binding.editUsername
+        observers()
+        listeners()
 
         return binding.root
     }
@@ -42,5 +38,26 @@ class ProfilesFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun observers() {
+        profilesViewModel.userProfile.observe(viewLifecycleOwner, Observer {
+            Picasso.get().load(it.avatarUrl).into(binding.imgAvatar)
+            binding.tvName.text = it.name
+            binding.tvUsername.text = it.login
+            binding.tvFollowersCount.text = it.followers.toString()
+            binding.tvRepoCount.text = it.publicRepos.toString()
+        })
+        // Import material for error
+        // Progress circle infinity
+        // Yoyo For animations
+    }
+
+    private fun listeners() {
+        val editUsername: TextInputEditText = binding.editUsername
+        val btnSearch: Button = binding.btnSearch
+        btnSearch.setOnClickListener {
+            profilesViewModel.retrofitCall(editUsername.text.toString())
+        }
     }
 }
