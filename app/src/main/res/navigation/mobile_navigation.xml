@@ -3,23 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_profile">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="dev.gustavodahora.githubprofiles.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/navigation_profile"
+        android:name="dev.gustavodahora.githubprofiles.ui.home.ProfilesFragment"
+        android:label="@string/profiles"
+        tools:layout="@layout/fragment_profiles" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="dev.gustavodahora.githubprofiles.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_settings"
+        android:name="dev.gustavodahora.githubprofiles.ui.dashboard.SettingsFragment"
+        android:label="@string/settings"
+        tools:layout="@layout/fragment_settings" />
 
-    <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="dev.gustavodahora.githubprofiles.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
 </navigation>
