@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.textfield.TextInputEditText
 import com.squareup.picasso.Picasso
@@ -41,13 +40,13 @@ class ProfilesFragment : Fragment() {
     }
 
     private fun observers() {
-        profilesViewModel.userProfile.observe(viewLifecycleOwner, Observer {
+        profilesViewModel.userProfile.observe(viewLifecycleOwner) {
             Picasso.get().load(it.avatarUrl).into(binding.imgAvatar)
             binding.tvName.text = it.name
             binding.tvUsername.text = it.login
             binding.tvFollowersCount.text = it.followers.toString()
             binding.tvRepoCount.text = it.publicRepos.toString()
-        })
+        }
         // Import material for error
         // Progress circle infinity
         // Yoyo For animations
