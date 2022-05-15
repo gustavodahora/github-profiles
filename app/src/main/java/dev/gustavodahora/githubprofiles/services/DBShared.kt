@@ -2,6 +2,7 @@ package dev.gustavodahora.githubprofiles.services
 
 import android.content.SharedPreferences
 import dev.gustavodahora.githubprofiles.model.ConstUtil
+import dev.gustavodahora.githubprofiles.model.ThemeStatus
 
 class DBShared {
     var editor: SharedPreferences.Editor? = null
@@ -10,8 +11,12 @@ class DBShared {
         editor = pref.edit()
     }
 
-    fun getTheme(pref: SharedPreferences): Int {
-        return pref.getInt(ConstUtil.THEME, ConstUtil.LIGHT)
+    fun getTheme(pref: SharedPreferences): ThemeStatus {
+        when (pref.getInt(ConstUtil.THEME, ConstUtil.LIGHT)) {
+            ConstUtil.LIGHT -> return ThemeStatus.LIGHT
+            ConstUtil.DARK -> return ThemeStatus.DARK
+        }
+        return ThemeStatus.LIGHT
     }
 
     fun setTheme(pref: SharedPreferences, theme: Int) {

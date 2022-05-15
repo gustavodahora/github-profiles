@@ -22,16 +22,9 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     fun getTheme() {
         val pref = mContext.getSharedPreferences(
-            "dev.gustavodahora.pomodoronow",
+            "dev.gustavodahora.githubprofiles",
             Context.MODE_PRIVATE
         )
-        calcTheme(dbShared.getTheme(pref))
-    }
-
-    private fun calcTheme(theme: Int) {
-        when (theme) {
-            ConstUtil.LIGHT -> _themeSetup.value = ThemeStatus.LIGHT
-            ConstUtil.DARK -> _themeSetup.value = ThemeStatus.DARK
-        }
+        _themeSetup.value = dbShared.getTheme(pref)
     }
 }
