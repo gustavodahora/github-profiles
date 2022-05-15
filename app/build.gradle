@@ -59,4 +59,13 @@ dependencies {
     implementation 'com.daimajia.androidanimations:library:2.4@aar'
     testImplementation "com.google.truth:truth:1.0.1"
     testImplementation "androidx.arch.core:core-testing:2.1.0"
+
+
+    // outras dependências da aplicação
+    // Dependência principal do Mockito
+    testImplementation 'org.mockito:mockito-core:2.28.2'
+    // Dependência do Mockito para testes no Android
+    androidTestImplementation 'org.mockito:mockito-android:2.28.2'
+    // Dependência do Mockito para ser possível mockar classes e métodos constantes
+    testImplementation 'org.mockito:mockito-inline:2.28.2'
 }
