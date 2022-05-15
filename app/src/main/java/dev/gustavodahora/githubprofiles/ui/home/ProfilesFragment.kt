@@ -1,6 +1,8 @@
 package dev.gustavodahora.githubprofiles.ui.home
 
 import android.app.Activity
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -23,6 +25,8 @@ class ProfilesFragment : Fragment() {
 
     private var _binding: FragmentProfilesBinding? = null
     private lateinit var profilesViewModel: ProfilesViewModel
+
+    private lateinit var urlLink: String
 
     private val binding get() = _binding!!
 
@@ -54,6 +58,7 @@ class ProfilesFragment : Fragment() {
             binding.tvUsername.text = it.login
             binding.tvFollowersCount.text = it.followers.toString()
             binding.tvRepoCount.text = it.publicRepos.toString()
+            urlLink = "https://github.com/" + binding.editUsername.text.toString()
 
             showCardProfile()
         }
@@ -69,6 +74,14 @@ class ProfilesFragment : Fragment() {
         btnSearch.setOnClickListener {
             profilesViewModel.retrofitCall(editUsername.text.toString())
             hideKeyboard()
+        }
+        binding.ctnLayout.setOnClickListener {
+            startActivity(
+                Intent(
+                    "android.intent.action.VIEW",
+                    Uri.parse(urlLink)
+                )
+            )
         }
     }
 
@@ -92,7 +105,8 @@ class ProfilesFragment : Fragment() {
     }
 
     private fun hideKeyboard() {
-        val imm = requireActivity().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        val imm =
+            requireActivity().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         var view = requireActivity().currentFocus
         if (view == null) {
             view = View(activity)

@@ -24,17 +24,22 @@
         android:layout_width="0dp"
         android:layout_height="200dp"
         android:layout_margin="5dp"
-        android:visibility="gone"
+        android:visibility="visible"
         app:cardCornerRadius="10dp"
         android:layout_marginTop="20dp"
         app:cardElevation="5dp"
+        android:clickable="true"
+        android:focusable="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/app_logo">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ctn_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:clickable="true"
+            android:focusable="true"
             android:padding="10dp">
 
             <de.hdodenhof.circleimageview.CircleImageView
@@ -178,6 +183,15 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_marginTop="20dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/card_view_user"/>
 
     <LinearLayout
         android:id="@+id/linearLayout"
