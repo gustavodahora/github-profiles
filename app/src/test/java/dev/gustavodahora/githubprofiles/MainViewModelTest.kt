@@ -21,7 +21,7 @@ class MainViewModelTest {
     private lateinit var viewModel: MainViewModel
 
     var sharedPrefs: SharedPreferences = Mockito.mock(SharedPreferences::class.java)
-    var context = Mockito.mock(Context::class.java)
+    var context: Context = Mockito.mock(Context::class.java)
 
     @Before
     fun setup() {
