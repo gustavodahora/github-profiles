@@ -7,6 +7,18 @@
     android:paddingHorizontal="20dp"
     tools:context=".ui.home.ProfilesFragment">
 
+    <TextView
+        android:id="@+id/app_logo"
+        android:text="@string/profiles"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:fontFamily="@font/rubik_semibold"
+        android:textSize="24sp"
+        android:layout_marginTop="20dp"
+        />
+
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view_user"
         android:layout_width="0dp"
@@ -14,10 +26,11 @@
         android:layout_margin="5dp"
         android:visibility="gone"
         app:cardCornerRadius="10dp"
+        android:layout_marginTop="20dp"
         app:cardElevation="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/app_logo">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
