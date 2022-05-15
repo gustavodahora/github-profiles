@@ -30,6 +30,7 @@ class ProfilesViewModel : ViewModel() {
                 if (response.code() == 200) {
                     if (response.body() != null) {
                         _userProfile.value = response.body()
+                        _errorStatus.value = false
                     }
                 } else {
                     _errorStatus.value = true

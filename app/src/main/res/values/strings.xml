@@ -21,4 +21,7 @@
     <string name="supporting_text">Check username</string>
     <string name="cancel">Cancel</string>
     <string name="ok">OK</string>
+    <string name="gustavo_da_hora">Gustavo da Hora</string>
+    <string name="github"><a href="https://github.com/gustavodahora">https://github.com/gustavodahora</a></string>
+    <string name="hangloose">Hangloose</string>
 </resources>
