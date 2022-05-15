@@ -37,6 +37,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun setTheme() {
-        AppCompatDelegate.setDefaultNightMode( AppCompatDelegate.MODE_NIGHT_NO)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
     }
 }
