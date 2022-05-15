@@ -13,6 +13,7 @@
         android:layout_marginTop="20dp"
         android:text="@string/switch_theme"
         android:textSize="20sp"
+        android:fontFamily="@font/rubik_regular"
         android:textStyle="italic"
         app:layout_constraintStart_toStartOf="@+id/cardView"
         app:layout_constraintTop_toBottomOf="@+id/cardView" />
@@ -74,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:text="@string/gustavo_da_hora"
-                android:textStyle="bold"
+                android:fontFamily="@font/rubik_semibold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/img_hang" />
@@ -86,6 +87,7 @@
                 android:autoLink="web"
                 android:linksClickable="true"
                 android:padding="10dp"
+                android:fontFamily="@font/rubik_regular"
                 android:text="@string/github"
                 android:textColorLink="@color/teal_700"
                 app:layout_constraintEnd_toEndOf="parent"
