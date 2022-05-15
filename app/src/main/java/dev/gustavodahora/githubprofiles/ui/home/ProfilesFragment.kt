@@ -55,7 +55,7 @@ class ProfilesFragment : Fragment() {
             showCardProfile()
         }
         profilesViewModel.errorStatus.observe(viewLifecycleOwner) {
-            showDialogError()
+            if (it) showDialogError()
         }
         // Progress circle infinity
     }
