@@ -26,4 +26,6 @@
     <string name="hangloose">Hangloose</string>
     <string name="switch_theme">Switch theme</string>
     <string name="img_theme">Image theme</string>
+    <string name="repo_name">Repo Name</string>
+    <string name="repo_link">Repo Link</string>
 </resources>

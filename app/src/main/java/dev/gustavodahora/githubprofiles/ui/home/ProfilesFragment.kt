@@ -12,13 +12,16 @@ import android.widget.Button
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.daimajia.androidanimations.library.Techniques
 import com.daimajia.androidanimations.library.YoYo
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputEditText
 import com.squareup.picasso.Picasso
+import dev.gustavodahora.convidados.view.adapter.ReposAdapter
 import dev.gustavodahora.githubprofiles.R
 import dev.gustavodahora.githubprofiles.databinding.FragmentProfilesBinding
+import dev.gustavodahora.githubprofiles.services.model.Repos
 
 
 class ProfilesFragment : Fragment() {
@@ -65,6 +68,9 @@ class ProfilesFragment : Fragment() {
         profilesViewModel.errorStatus.observe(viewLifecycleOwner) {
             if (it) showDialogError()
         }
+        profilesViewModel.repos.observe(viewLifecycleOwner) {
+            setupRecyclerView(profilesViewModel.repos.value)
+        }
         // Progress circle infinity
     }
 
@@ -72,7 +78,8 @@ class ProfilesFragment : Fragment() {
         val editUsername: TextInputEditText = binding.editUsername
         val btnSearch: Button = binding.btnSearch
         btnSearch.setOnClickListener {
-            profilesViewModel.retrofitCall(editUsername.text.toString())
+            profilesViewModel.callUserProfile(editUsername.text.toString())
+            profilesViewModel.callRecyclerRepo(editUsername.text.toString())
             hideKeyboard()
         }
         binding.ctnLayout.setOnClickListener {
@@ -112,5 +119,13 @@ class ProfilesFragment : Fragment() {
             view = View(activity)
         }
         imm.hideSoftInputFromWindow(view.windowToken, 0)
+    }
+
+    private fun setupRecyclerView(repos: List<Repos>?) {
+        val recyclerView = binding.recyclerView
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        val reposAdapter = ReposAdapter()
+        recyclerView.adapter = reposAdapter
+        reposAdapter.updateRepos(repos)
     }
 }

@@ -21,7 +21,7 @@ class ProfilesViewModelTest {
 
     @Test
     fun `insert username with empty field returns error`() {
-        viewModel.retrofitCall(" ")
+        viewModel.callUserProfile(" ")
         val value = viewModel.errorStatus.getOrAwaitValueTest()
 
         assertThat(value).isTrue()
@@ -29,7 +29,7 @@ class ProfilesViewModelTest {
 
     @Test
     fun `insert username with wrong field returns error`() {
-        viewModel.retrofitCall("dwijdawijd***law")
+        viewModel.callUserProfile("dwijdawijd***law")
         val value = viewModel.errorStatus.getOrAwaitValueTest()
 
         assertThat(value).isTrue()
@@ -37,7 +37,7 @@ class ProfilesViewModelTest {
 
     @Test
     fun `insert a correctly user name field returns valid user`() {
-        viewModel.retrofitCall("gustavodahora")
+        viewModel.callUserProfile("gustavodahora")
         val errorStatus = viewModel.errorStatus.getOrAwaitValueTest()
         val profileSelected = viewModel.userProfile.getOrAwaitValueTest()
 
